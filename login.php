@@ -1,3 +1,37 @@
+<?php
+    session_start();
+    $_SESSION["isLogin"] = false;
+
+    $error_notifications       = "";
+    $error_notifications_sylte = "width: 100%; background-color: #af4c4c; color: #ffffff; padding: 14px 20px; margin: 12px 0; border: none; border-radius: 4px; font-size: 17px; letter-spacing: 0.6px; display: flex; align-items: center; justify-content: center; ";
+
+    $dataBase_servername = "localhost";
+    $dataBase_username   = "root";
+    $dataBase_password   = "";
+    $dataBase_name       = "warehouse";
+
+    $db_conn = new mysqli($dataBase_servername, $dataBase_username, $dataBase_password, $dataBase_name);
+    if ($db_conn->connect_error){ $error_notifications = "<div style='$error_notifications_sylte'>ERROR: DataBase connect</div>"; exit; }
+
+    $data = $db_conn->query("SELECT username, password FROM users_account");
+
+    if (isset($_POST['submit'])) {
+        if ($data->num_rows > 0) {
+            while($row = $data->fetch_assoc()) {
+                if (trim($_POST['username']) == $row["username"] && md5(trim($_POST['password'])) == $row["password"]) {
+                    $_SESSION["isLogin"] = true;
+                    header("location: ./index.php");
+                } else {
+                    $_SESSION["isLogin"] = false; 
+                    $error_notifications = "<div style='$error_notifications_sylte'>Incorrect username or password</div>";
+                }
+            }
+        } else $error_notifications = "<div style='$error_notifications_sylte'>ERROR: The DataBase is void</div>";
+    }
+
+    $db_conn -> close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,27 +48,9 @@
         <input type="text" name="username" id="user" required>
 
         <label for="pass">Password</label>
-        <input type="password" name="password" id="pass">
-        <input type="submit" value="Login" name="submit" required>
+        <input type="password" name="password" id="pass" required>
+        <input type="submit" value="Login" name="submit">
+        <?php echo $error_notifications; ?>
     </form>
 </body>
 </html>
-
-<?php
-    $isLogin = false;
-
-    $dataBase_servername = "localhost";
-    $dataBase_username   = "username";
-    $dataBase_password   = "password";
-    try {
-        $dbConn = new PDO("mysql:host=$dataBase_servername;dbname=myDB", $dataBase_username, $dataBase_password);
-        $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        if (isset($_POST['submit'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-        }
-    } catch(PDOException $e) { echo "";}
-
-    return $isLogin;
-?>

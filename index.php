@@ -1,6 +1,6 @@
 <?php
-    $isLogin = require("./login.php");
-    if (!$isLogin) header("location: ./login.php");
+    session_start();
+    if (!$_SESSION["isLogin"]) header("location: ./login.php");
 ?>
 
 <!DOCTYPE html>

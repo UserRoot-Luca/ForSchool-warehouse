@@ -1,6 +1,19 @@
 :root{
-    --bg_body: #111111;
-    --color_body: #ffffff;
+/*------------body--------------*/
+    --bg__body: #111111;
+    --color__body: #ffffff;
+
+/*-------------input-------------*/
+    --border_color__input: #cccccc;
+
+/*----------input_submit----------*/ 
+    --bg__input_submit: #4CAF50;
+    --color__input_submit: #ffffff;
+
+/*--------input_submit_hover-------*/
+    --bg__input_submit_hover: #45a049;
+
+/*----------------------------------*/
 }
 
 *{
@@ -12,8 +25,8 @@
 html, body{
     width: 100%;
     height: 100%;
-    background-color: var(--bg_body);
-    color: var(--color_body);
+    background-color: var(--bg__body);
+    color: var(--color__body);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +40,7 @@ input{
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border_color__input);
     border-radius: 4px;
     box-sizing: border-box;
     outline: none;
@@ -35,8 +48,8 @@ input{
   
 input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--bg__input_submit);
+    color: var(--color__input_submit);
     padding: 14px 20px;
     margin: 12px 0;
     border: none;
@@ -47,5 +60,5 @@ input[type=submit] {
 }
   
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: var(--bg__input_submit_hover);
 }
