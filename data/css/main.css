@@ -3,6 +3,16 @@
     --bg_body: #111111;
     --color_body: #ffffff;
 
+/*-------------input-------------*/
+--border_color__input: #cccccc;
+
+/*----------input_submit----------*/ 
+    --bg__input_submit: #4CAF50;
+    --color__input_submit: #ffffff;
+
+/*--------input_submit_hover-------*/
+    --bg__input_submit_hover: #45a049;
+
 /*----------------------------------*/
 }
 
@@ -65,7 +75,59 @@ html, body{
     margin-right: 35px;
 }
 .sub_nav{
-    background-color: aqua;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #0e507c;
     height: 50%;
-    transition: 2s;
+}
+.sub_nav__container{
+    height: 100%;
+    width: 50%;
+}
+.sub_nav__container__title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 0.6px;
+}
+.sub_nav__container__form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90%;
+
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.6px;
+    padding: 0px 30px;
+
+}
+
+.sub_nav__container__form>input{
+    width: 100%;
+    padding: 10px 18px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid var(--border_color__input);
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.sub_nav__container__form>input[type=submit] {
+    width: 100%;
+    background-color: var(--bg__input_submit);
+    color: var(--color__input_submit);
+    padding: 12px 19px;
+    margin: 12px 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 17px;
+    letter-spacing: 0.6px;
+}
+  
+.sub_nav__container__form>input[type=submit]:hover {
+    background-color: var(--bg__input_submit_hover);
 }
